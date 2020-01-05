@@ -1,0 +1,66 @@
+﻿<Window x:Class="Cmcoins.Boc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Handy="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        xmlns:local="clr-namespace:Cmcoins.Boc"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="860" Width="1350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="199*"></ColumnDefinition>
+            <ColumnDefinition Width="65*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="367*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                    <ColumnDefinition Width="19*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TextBox_Url" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5" ></TextBox>
+                <Button Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Click="Button_Refash_Click" Margin="5" >刷新</Button>
+            </Grid>
+            <WebBrowser x:Name="MainWebBrowser" Grid.Row="1"></WebBrowser>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="233*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Excel-->
+            <Grid  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TextBox_ExcelPath" Grid.Column="0" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5"></TextBox>
+                <Button  x:Name="button_LoadExcel" Grid.Column="1" Content="导入" Click="Button_LoadExcel_Click" VerticalAlignment="Center" Height="30" Margin="5"></Button>
+            </Grid>
+            <hc:ButtonGroup Height="30" Grid.Row="1">
+                <Button  x:Name="button_Add" Content="添加信息" Click="Button_Click_Add"></Button>
+                <Button  x:Name="button_Next"></Button>
+            </hc:ButtonGroup>
+            <DataGrid x:Name="DataGrid_UserInfos" Grid.Row="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Str_UserName}" Header="名称"/>
+                    <DataGridTextColumn Binding="{Binding Str_Mobile}" Header="手机号"/>
+                    <DataGridTextColumn Binding="{Binding Str_IdentityNumber}" Header="身份证号"/>
+                </DataGrid.Columns>
+                <!--<DataGrid.Resources>
+                    <local:BGConverter x:Key="bgconverter"/>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding Path=IsPrint, Mode=TwoWay, Converter={StaticResource bgconverter} }"/>
+                    </Style>
+                </DataGrid.Resources>-->
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
